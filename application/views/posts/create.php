@@ -1,7 +1,7 @@
 <h2><?= $title; ?></h2>
 
 <?= validation_errors(); ?>
-<?= form_open('posts/create'); ?>
+<?= form_open_multipart('posts/create'); ?>
 
 <div class="form-group">
 	<label>Title</label>
@@ -21,6 +21,11 @@
 			<option value="<?php echo $category['id']; ?>"><?= $category['name'] ?></option>
 		<?php endforeach; ?>
 	</select>
+</div>
+
+<div>
+	<label>Upload Image</label>
+	<input type="file" name="postImage" size="20">
 </div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
