@@ -5,6 +5,6 @@
 	<small class="post-date">Post on: <?= $post['created_at'] ?> </small>
 	<p><?= $post['body'] ?></p>
 
-	<p><a class="btn btn-default" href="<?= site_url('/posts/' . $post['slug']); ?>">Read More...</a></p>
+	<p><a class="btn btn-outline-secondary" href="<?= site_url('/posts/' . $post['slug']); ?>">Read More...</a></p>
 
 <?php endforeach; ?>
