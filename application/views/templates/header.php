@@ -2,7 +2,8 @@
 
 <head>
 	<title>CI_Blog</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>/assets/css/style.css">
 	<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 </head>

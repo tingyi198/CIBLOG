@@ -32,6 +32,8 @@ class Posts extends CI_Controller
 	{
 		$data['title'] = 'Create Post';
 
+		$data['categories'] = $this->Post_model->get_categories();
+
 		$this->form_validation->set_rules('title', 'Title', 'required');
 		$this->form_validation->set_rules('body', 'Body', 'required');
 
@@ -54,6 +56,8 @@ class Posts extends CI_Controller
 	public function edit($slug)
 	{
 		$data['post'] = $this->Post_model->get_posts($slug);
+
+		$data['categories'] = $this->Post_model->get_categories();
 
 		if (empty($data['post'])) {
 			show_404();
