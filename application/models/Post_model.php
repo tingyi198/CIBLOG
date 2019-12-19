@@ -32,4 +32,30 @@ class Post_model extends CI_Model
 
 		return $this->db->insert('posts', $data);
 	}
+
+	public function delete_post($id)
+	{
+		/** 第一種作法 */
+		$this->db->where('id', $id);
+		$this->db->delete('posts');
+
+		/**
+		 * 第二種作法
+		 * $this->db->delete('posts', array('id' => $id));
+		 */
+
+		return true;
+	}
+
+	public function update_post()
+	{
+		$data = array(
+			'title' => $this->input->post('title'),
+			'slug' => url_title($this->input->post('title')),
+			'body' => $this->input->post('body')
+		);
+
+		$this->db->where('id', $this->input->post('id'));
+		return $this->db->update('posts', $data);
+	}
 }
