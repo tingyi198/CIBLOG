@@ -25,7 +25,7 @@
 
 <div>
 	<label>Upload Image</label>
-	<input type="file" name="postImage" size="20">
+	<input type="file" name="userfile" size="20">
 </div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
