@@ -21,7 +21,9 @@
 				<a class="nav-item nav-link active" href="<?php echo base_url(); ?>">Home <span class="sr-only"></span></a>
 				<a class="nav-item nav-link" href="<?php echo base_url(); ?>about">About</a>
 				<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts">Blogs</a>
-				<a class="nav-item nav-link navbar-right" href="<?php echo base_url(); ?>/posts/create">Create Post</a>
+				<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
+				<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
+				<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
 			</div>
 
 		</div>
