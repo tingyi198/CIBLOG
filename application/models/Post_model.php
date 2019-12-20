@@ -10,21 +10,21 @@ class Post_model extends CI_Model
 	public function get_posts($slug = FALSE)
 	{
 		if ($slug === FALSE) {
-			$this->db->select('posts.id, category_id, title, slug, body, posts.created_at, categories.id as cid, categories.name, categories.created_at', FALSE);
+			$this->db->select('posts.id, category_id, title, slug, body, post_image, posts.created_at, categories.id as cid, categories.name, categories.created_at', FALSE);
 			$this->db->join('categories', 'categories.id = posts.category_id');
 			$this->db->order_by('posts.id', 'DESC');
 			$query = $this->db->get('posts');
 			return $query->result_array();
 		}
 
-		$this->db->select('posts.id, category_id, title, slug, body, posts.created_at, categories.id as cid, categories.name, categories.created_at', FALSE);
+		$this->db->select('posts.id, category_id, title, slug, body, post_image, posts.created_at, categories.id as cid, categories.name, categories.created_at', FALSE);
 		$this->db->order_by('posts.id', 'DESC');
 		$this->db->join('categories', 'categories.id = posts.category_id');
 		$query = $this->db->get_where('posts', array('slug' => $slug));
 		return $query->row_array();
 	}
 
-	public function create_post()
+	public function create_post($post_image)
 	{
 		$slug = url_title($this->input->post('title'));
 
@@ -32,7 +32,8 @@ class Post_model extends CI_Model
 			'title' => $this->input->post('title'),
 			'slug' => $slug,
 			'body' => $this->input->post('body'),
-			'category_id' => $this->input->post('category_id')
+			'category_id' => $this->input->post('category_id'),
+			'post_image' => $post_image
 		);
 
 		return $this->db->insert('posts', $data);
