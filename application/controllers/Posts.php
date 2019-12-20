@@ -43,25 +43,18 @@ class Posts extends CI_Controller
 			$this->load->view('posts/create', $data);
 			$this->load->view('templates/footer');
 		} else { // 表單驗證通過
-
 			// upload image
-			$config['upload_path'] = './assets/images/posts/';
+			$config['upload_path'] = './assets/images/posts';
 			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size'] = '10024';
-			$config['max_width'] = '6000';
-			$config['max_height'] = '6000';
+			$config['max_size'] = '2048';
+			$config['max_width'] = '500';
+			$config['max_height'] = '500';
 
 			$this->load->library('upload', $config);
 
-			if (!$this->upload->do_upload()) { // 上傳失敗
-				$errors = array('error' => $this->upload->display_errors());
-				$post_image = 'noImage.jpg';
-			} else { // 上傳成功
-				$data = array('upload_data' => $this->upload->data());
-				$post_image = $_FILES ['userfile']['name'];
-			}
 
-			$this->Post_model->create_post($post_image);
+
+			$this->Post_model->create_post();
 			redirect('posts');
 		}
 	}
