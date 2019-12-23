@@ -30,6 +30,39 @@ class Users extends CI_Controller
 		}
 	}
 
+	public function login()
+	{
+		$data['title'] = 'Sign in';
+
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('templates/header');
+			$this->load->view('users/login', $data);
+			$this->load->view('templates/footer');
+		} else {
+
+			// Get username
+			$username = $this->input->post('username');
+
+			// Get and encrypt the password
+			$password = md5($this->input->post('password'));
+
+			// Login user
+			$user_id = $this->User_model->login($username, $password);
+
+			if ($user_id) {
+				die('success');
+				$this->session->set_flashdata('user_login', 'You are now log in.');
+				redirect('posts');
+			} else {
+				$this->session->set_flashdata('login_failed', 'Login is invalid.');
+				redirect('users/login');
+			}
+		}
+	}
+
 	// Check if username exists
 	function check_username_exists($username)
 	{

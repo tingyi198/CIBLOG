@@ -26,6 +26,7 @@
 				<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
 
 				<a class="nav-item nav-link" href="<?php echo base_url(); ?>users/register">Register</a>
+				<a class="nav-item nav-link" href="<?php echo base_url(); ?>users/login">Login</a>
 			</div>
 
 		</div>
@@ -52,4 +53,12 @@
 
 		<?php if ($this->session->flashdata('post_deleted')) : ?>
 			<p class="alert alert-success"> <?php echo $this->session->flashdata('post_deleted'); ?> </p>
+		<?php endif; ?>
+
+		<?php if ($this->session->flashdata('user_login')) : ?>
+			<p class="alert alert-success"><?php echo $this->session->flashdata('user_login'); ?></p>
+		<?php endif; ?>
+
+		<?php if ($this->session->flashdata('login_failed')) : ?>
+			<p class="alert alert-danger"><?php echo $this->session->flashdata('login_failed'); ?></p>
 		<?php endif; ?>
