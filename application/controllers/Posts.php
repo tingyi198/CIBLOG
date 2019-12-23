@@ -17,10 +17,13 @@ class Posts extends CI_Controller
 	public function view($slug = NULL)
 	{
 		$data['post'] = $this->Post_model->get_posts($slug);
+		$post_id = $data['post']['id'];
+		$data['comments'] = $this->Comment_model->get_comments($post_id);
 
 		if (empty($data['post'])) {
 			show_404();
 		}
+
 		$data['title'] = $data['post']['title'];
 
 		$this->load->view('templates/header');
@@ -58,7 +61,7 @@ class Posts extends CI_Controller
 				$post_image = 'noImage.jpg';
 			} else { // 上傳成功
 				$data = array('upload_data' => $this->upload->data());
-				$post_image = $_FILES ['userfile']['name'];
+				$post_image = $_FILES['userfile']['name'];
 			}
 
 			$this->Post_model->create_post($post_image);
