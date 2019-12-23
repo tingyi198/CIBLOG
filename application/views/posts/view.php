@@ -15,7 +15,7 @@
 
 <hr>
 <h3>Comments</h3>
-<?php if ($comments) : ?>
+<?php if ($comments ?? array()) : ?>
 	<?php foreach ($comments as $comment) : ?>
 		<h5><?php echo $comment['body']; ?> [by <strong><?php echo $comment['name'] ?></strong> ] </h5>
 	<?php endforeach; ?>
