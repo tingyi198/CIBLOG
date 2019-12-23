@@ -65,6 +65,10 @@ class Posts extends CI_Controller
 			}
 
 			$this->Post_model->create_post($post_image);
+
+			// Set message
+			$this->session->set_flashdata('post_created', 'Your post has been created.');
+
 			redirect('posts');
 		}
 	}
@@ -72,6 +76,9 @@ class Posts extends CI_Controller
 	public function delete($id)
 	{
 		$this->Post_model->delete_post($id);
+
+		$this->session->set_flashdata('post_deleted', 'Your post has been deleted.');
+
 		redirect('posts');
 	}
 
@@ -93,6 +100,10 @@ class Posts extends CI_Controller
 	public function update()
 	{
 		$this->Post_model->update_post();
+
+		// Set message
+		$this->session->set_flashdata('post_updated', 'Your post has been updated.');
+
 		redirect('posts');
 	}
 }
