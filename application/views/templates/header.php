@@ -8,7 +8,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="<?= base_url() ?>/assets/css/style.css">
 	<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-
 </head>
 
 <body>
@@ -33,14 +32,15 @@
 					<a class="nav-item nav-link" href="<?php echo base_url(); ?>about">About</a>
 				</li>
 
-				<?php if ($this->session->userdata('logged_in')) : ?>
-					<li class="nav-item">
-						<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts">Blogs</a>
-					</li>
+				<li class="nav-item">
+					<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts">Blogs</a>
+				</li>
 
-					<li class="nav-item">
-						<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
-					</li>
+				<li class="nav-item">
+					<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
+				</li>
+
+				<?php if ($this->session->userdata('logged_in')) : ?>
 
 					<li class="nav-item">
 						<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
@@ -50,6 +50,7 @@
 						<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
 					</li>
 				<?php endif; ?>
+
 			</ul>
 
 			<ul class="navbar-nav ml-auto">

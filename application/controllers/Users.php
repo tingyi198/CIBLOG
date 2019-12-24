@@ -32,6 +32,7 @@ class Users extends CI_Controller
 
 	public function login()
 	{
+
 		$data['title'] = 'Sign in';
 
 		$this->form_validation->set_rules('username', 'Username', 'required');

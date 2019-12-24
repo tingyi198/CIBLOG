@@ -33,6 +33,11 @@ class Posts extends CI_Controller
 
 	public function create()
 	{
+
+		if (!$this->session->userdata('logged_in')) {
+			redirect('/users/login');
+		}
+
 		$data['title'] = 'Create Post';
 
 		$data['categories'] = $this->Post_model->get_categories();
@@ -75,6 +80,11 @@ class Posts extends CI_Controller
 
 	public function delete($id)
 	{
+
+		if (!$this->session->userdata('logged_in')) {
+			redirect('/users/login');
+		}
+
 		$this->Post_model->delete_post($id);
 
 		$this->session->set_flashdata('post_deleted', 'Your post has been deleted.');
@@ -84,7 +94,18 @@ class Posts extends CI_Controller
 
 	public function edit($slug)
 	{
+
+		// 檢查使用者是否登入
+		if (!$this->session->userdata('logged_in')) {
+			redirect('/users/login');
+		}
+
 		$data['post'] = $this->Post_model->get_posts($slug);
+
+		// 檢查登入者是否為文章作者
+		if ($this->session->userdata('user_id') !== $data['post']['user_id']) {
+			redirect('posts');
+		}
 
 		$data['categories'] = $this->Post_model->get_categories();
 
@@ -99,6 +120,11 @@ class Posts extends CI_Controller
 
 	public function update()
 	{
+
+		if (!$this->session->userdata('logged_in')) {
+			redirect('/users/login');
+		}
+
 		$this->Post_model->update_post();
 
 		// Set message

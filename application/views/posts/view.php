@@ -8,10 +8,12 @@
 
 <br>
 
-<?= form_open('posts/delete/' . $post['id']); ?>
-<a class="btn btn-info pull-left" href="edit/<?= $post['slug'] ?>">Edit</a>
-<input type="submit" value="Delete" class="btn btn-danger">
-</form>
+<?php if ($this->session->userdata('user_id') === $post['user_id']) : ?>
+	<?= form_open('posts/delete/' . $post['id']); ?>
+	<a class="btn btn-info pull-left" href="edit/<?= $post['slug'] ?>">Edit</a>
+	<input type="submit" value="Delete" class="btn btn-danger">
+	</form>
+<?php endif; ?>
 
 <hr>
 <h3>Comments</h3>
@@ -44,6 +46,7 @@
 	<textarea name="body" class="form-control" rows="10"></textarea>
 </div>
 
+<br>
 <input type="hidden" name="slug" value="<?= $post['slug'] ?>">
 <button type="submit" class="btn btn-success">Submit</button>
 </form>
