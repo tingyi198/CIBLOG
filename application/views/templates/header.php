@@ -34,6 +34,8 @@
 
 	<div class="container">
 
+		<br>
+
 		<!-- Flash message -->
 		<?php if ($this->session->flashdata('user_registered')) : ?>
 			<p class="alert alert-success"> <?php echo $this->session->flashdata('user_registered'); ?> </p>
