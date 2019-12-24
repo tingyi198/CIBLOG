@@ -33,35 +33,43 @@
 					<a class="nav-item nav-link" href="<?php echo base_url(); ?>about">About</a>
 				</li>
 
-				<li class="nav-item">
-					<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts">Blogs</a>
-				</li>
+				<?php if ($this->session->userdata('logged_in')) : ?>
+					<li class="nav-item">
+						<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts">Blogs</a>
+					</li>
 
-				<li class="nav-item">
-					<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
-				</li>
+					<li class="nav-item">
+						<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
+					</li>
 
-				<li class="nav-item">
-					<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
-				</li>
+					<li class="nav-item">
+						<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
+					</li>
 
-				<li class="nav-item">
-					<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
-				</li>
+					<li class="nav-item">
+						<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
+					</li>
+				<?php endif; ?>
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/register">Register</a>
-				</li>
 
-				<li class="nav-item">
-					<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/login">Login</a>
-				</li>
+				<?php if ($this->session->userdata('logged_in')) : ?>
+					<li class="nav-item">
+						<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/logout">Logout</a>
+					</li>
+				<?php endif; ?>
 
-				<li class="nav-item">
-					<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/logout">Logout</a>
-				</li>
+				<?php if (!$this->session->userdata('logged_in')) : ?>
+					<li class="nav-item">
+						<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/login">Login</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/register">Register</a>
+					</li>
+				<?php endif ?>
+
 			</ul>
 
 		</div>
