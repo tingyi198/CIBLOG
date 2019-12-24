@@ -71,8 +71,21 @@ class Users extends CI_Controller
 		}
 	}
 
+	public function logout()
+	{
+		// unset user data
+		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('logged_in');
+
+		// flash data
+		$this->session->set_flashdata('user_logout', 'You are now logout.');
+
+		redirect('users/login');
+	}
+
 	// Check if username exists
-	function check_username_exists($username)
+	public function check_username_exists($username)
 	{
 
 		$this->form_validation->set_message('check_username_exists', 'The username is taken. Please choose a different one.');
@@ -81,7 +94,7 @@ class Users extends CI_Controller
 	}
 
 	// Check if email exists
-	function check_email_exists($email)
+	public function check_email_exists($email)
 	{
 		$this->form_validation->set_message('check_email_exists', 'The email is taken. Please choose a different one.');
 		return $this->User_model->check_email_exists($email);

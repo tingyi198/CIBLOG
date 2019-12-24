@@ -99,3 +99,7 @@
 		<?php if ($this->session->flashdata('login_failed')) : ?>
 			<p class="alert alert-danger"><?php echo $this->session->flashdata('login_failed'); ?></p>
 		<?php endif; ?>
+
+		<?php if ($this->session->flashdata('set_flashdata')) : ?>
+			<p class="alert alert-success"><?php echo $this->session->flashdata('set_flashdata') ?></p>
+		<?php endif; ?>
