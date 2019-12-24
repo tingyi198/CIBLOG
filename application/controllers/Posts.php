@@ -7,7 +7,21 @@ class Posts extends CI_Controller
 
 		$data['title'] = 'Latest Posts';
 
-		$data['posts'] = $this->Post_model->get_posts();
+		$total_rows = $this->db->count_all('posts');
+		$limit = 1;
+		$offset = $this->input->get('offset');
+
+		// 分頁設定
+		$this->pagination->initialize(
+			[
+				'base_url' => base_url() . 'posts/index/page',
+				'total_rows' => $total_rows,
+				'per_page' => $limit,
+				'num_links' => $total_rows
+			]
+		);
+
+		$data['posts'] = $this->Post_model->get_posts(FALSE, $limit, $offset);
 
 		$this->load->view('templates/header');
 		$this->load->view('posts/index', $data);
