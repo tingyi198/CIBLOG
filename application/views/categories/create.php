@@ -9,6 +9,7 @@
 	<input type="text" class="form-control" name="name" placeholder="name">
 </div>
 
+<br>
 <button type="submit" class="btn btn-info">Submit</button>
 
 </form>

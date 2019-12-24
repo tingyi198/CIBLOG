@@ -4,30 +4,65 @@
 	<title>CI_Blog</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css"> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="<?= base_url() ?>/assets/css/style.css">
 	<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
 </head>
 
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="<?= base_url() ?>">CiBlog</a>
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="navbar-brand" href="<?= base_url() ?>">CiBlog</a>
+				</li>
 
-			<div class="navbar-nav">
-				<a class="nav-item nav-link active" href="<?php echo base_url(); ?>">Home <span class="sr-only"></span></a>
-				<a class="nav-item nav-link" href="<?php echo base_url(); ?>about">About</a>
-				<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts">Blogs</a>
-				<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
-				<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
-				<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
+				<li class="nav-item">
+					<a class="nav-item nav-link active" href="<?php echo base_url(); ?>">Home <span class="sr-only"></span></a>
+				</li>
 
-				<a class="nav-item nav-link" href="<?php echo base_url(); ?>users/register">Register</a>
-				<a class="nav-item nav-link" href="<?php echo base_url(); ?>users/login">Login</a>
-			</div>
+				<li class="nav-item">
+					<a class="nav-item nav-link" href="<?php echo base_url(); ?>about">About</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts">Blogs</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories">Categories</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-item nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-item nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/register">Register</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/login">Login</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-item nav-link navbar-nav ml-auto" href="<?php echo base_url(); ?>users/logout">Logout</a>
+				</li>
+			</ul>
 
 		</div>
 	</nav>
