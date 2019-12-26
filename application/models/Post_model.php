@@ -20,8 +20,7 @@ class Post_model extends CI_Model
 			post_image,
 			posts.created_at,
 			categories.id as cid,
-			categories.name,
-			categories.created_at
+			categories.name
 			FROM `posts`
 			JOIN `categories`
 			ON categories.id = posts.category_id
@@ -53,16 +52,22 @@ class Post_model extends CI_Model
 	{
 		$slug = url_title($this->input->post('title'));
 
-		$data = array(
+		$binds = array(
+			'category_id' => $this->input->post('category_id'),
+			'user_id' => $this->session->userdata('user_id'),
 			'title' => $this->input->post('title'),
 			'slug' => $slug,
 			'body' => $this->input->post('body'),
-			'category_id' => $this->input->post('category_id'),
-			'user_id' => $this->session->userdata('user_id'),
 			'post_image' => $post_image
 		);
 
-		return $this->db->insert('posts', $data);
+		$sql = "
+		INSERT INTO `posts`
+		(category_id, user_id, title, slug, body, post_image)
+		VALUES (?, ?, ?, ?, ?, ?)
+		";
+
+		$this->db->query($sql, $binds);
 	}
 
 	public function delete_post($id)
