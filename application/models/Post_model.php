@@ -115,8 +115,15 @@ class Post_model extends CI_Model
 
 	public function get_categories()
 	{
-		$this->db->order_by('name');
-		$query = $this->db->get('categories');
+
+		$sql = "
+		SELECT * FROM categories
+		ORDER BY name
+		";
+
+		$query = $this->db->query($sql);
+
 		return $query->result_array();
+		
 	}
 }
