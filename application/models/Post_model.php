@@ -72,14 +72,16 @@ class Post_model extends CI_Model
 
 	public function delete_post($id)
 	{
-		/** 第一種作法 */
-		$this->db->where('id', $id);
-		$this->db->delete('posts');
+		
+		 $sql = "
+		 DELETE
+		 FROM `posts`
+		 WHERE id = ?
+		 ";
 
-		/**
-		 * 第二種作法
-		 * $this->db->delete('posts', array('id' => $id));
-		 */
+		 $binds = array($id);
+
+		 $this->db->query($sql, $binds);
 
 		return true;
 	}
