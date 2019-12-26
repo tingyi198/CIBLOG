@@ -72,7 +72,7 @@ class Post_model extends CI_Model
 
 	public function delete_post($id)
 	{
-		
+
 		 $sql = "
 		 DELETE
 		 FROM `posts`
@@ -91,15 +91,26 @@ class Post_model extends CI_Model
 
 		$slug = url_title($this->input->post('title'));
 
-		$data = array(
+		$binds = array(
 			'title' => $this->input->post('title'),
 			'slug' => $slug,
 			'body' => $this->input->post('body'),
-			'category_id' => $this->input->post('category_id')
+			'category_id' => $this->input->post('category_id'),
+			'id' => $this->input->post('id')
 		);
 
-		$this->db->where('id', $this->input->post('id'));
-		return $this->db->update('posts', $data);
+		$sql = "
+		UPDATE `posts`
+		SET title = ?,
+		slug = ?,
+		body = ?,
+		category_id = ?,
+		created_at = NOW()
+		WHERE id = ?
+		";
+
+		$this->db->query($sql, $binds);
+
 	}
 
 	public function get_categories()
