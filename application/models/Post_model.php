@@ -55,9 +55,9 @@ class Post_model extends CI_Model
 		$binds = array(
 			'category_id' => $this->input->post('category_id'),
 			'user_id' => $this->session->userdata('user_id'),
-			'title' => $this->input->post('title'),
-			'slug' => $slug,
-			'body' => $this->input->post('body'),
+			'title' => $this->db->escape($this->input->post('title')),
+			'slug' => $this->db->escape($slug),
+			'body' => $this->db->escape($this->input->post('body')),
 			'post_image' => $post_image
 		);
 
@@ -124,6 +124,6 @@ class Post_model extends CI_Model
 		$query = $this->db->query($sql);
 
 		return $query->result_array();
-		
+
 	}
 }

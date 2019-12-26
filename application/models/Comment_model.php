@@ -11,9 +11,9 @@ class Comment_model extends CI_Model
 	{
 		$data = array(
 			'post_id' => $post_id,
-			'name' => $this->input->post('name'),
+			'name' => $this->db->escape($this->input->post('name')),
 			'email' => $this->input->post('email'),
-			'body' => $this->input->post('body')
+			'body' => $this->db->escape($this->input->post('body'))
 		);
 
 		return $this->db->insert('comments', $data);
