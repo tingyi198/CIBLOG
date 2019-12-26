@@ -20,26 +20,26 @@ $config['full_tag_open']         = '<div class="btn-group justify-content-center
 $config['full_tag_close']        = '</div>';
 
 $config['first_link']            = '<<';
-$config['first_tag_open']        = '<button type="button" class="btn btn-secondary">';
+$config['first_tag_open']        = '<button type="button" class="btn btn-link">';
 $config['first_tag_close']       = '</button>';
 $config['first_url']             = '';
 
 $config['last_link']             = '>>';
-$config['last_tag_open']         = '<button type="button" class="btn btn-secondary">';
+$config['last_tag_open']         = '<button type="button" class="btn btn-link">';
 $config['last_tag_close']        = '</button>';
 
 $config['next_link']             = '>';
-$config['next_tag_open']         = '<button type="button" class="btn btn-secondary">';
+$config['next_tag_open']         = '<button type="button" class="btn btn-link">';
 $config['next_tag_close']        = '</button>';
 
 $config['prev_link']             = '<';
-$config['prev_tag_open']         = '<button type="button" class="btn btn-secondary">';
+$config['prev_tag_open']         = '<button type="button" class="btn btn-link">';
 $config['prev_tag_close']        = '</button>';
 
 $config['cur_tag_open']          = '<button type="button" class="btn btn-secondary active">';
 $config['cur_tag_close']         = '</button>';
 
-$config['num_tag_open']          = '<button type="button" class="btn btn-secondary">';
+$config['num_tag_open']          = '<button type="button" class="btn btn-link">';
 $config['num_tag_close']         = '</button>';
 
 $config['display_pages']         = TRUE; // 顯示分頁數字，FALSE 僅出現上一頁/下一頁
