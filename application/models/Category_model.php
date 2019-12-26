@@ -12,10 +12,10 @@ class Category_model extends CI_Model
 	 *
 	 * @return void
 	 */
-	public function create_category()
+	public function create_category($params)
 	{
 		$data = array(
-			'name' => $this->db->escape($this->input->post('name'))
+			'name' => $params['name']
 		);
 
 		return $this->db->insert('categories', $data);

@@ -24,12 +24,14 @@ class Categories extends CI_Controller
 
 		$this->form_validation->set_rules('name', 'Name', 'required');
 
+		$params = $this->security->xss_clean($this->input->post());
+
 		if ($this->form_validation->run() === FALSE) {
 			$this->load->view('templates/header');
 			$this->load->view('categories/create', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$this->Category_model->create_category();
+			$this->Category_model->create_category($params);
 
 			// Set message
 			$this->session->set_flashdata('category_created', 'Your category has been created.');
