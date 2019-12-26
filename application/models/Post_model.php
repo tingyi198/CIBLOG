@@ -48,16 +48,16 @@ class Post_model extends CI_Model
 		}
 	}
 
-	public function create_post($post_image)
+	public function create_post($params, $post_image)
 	{
 		$slug = url_title($this->input->post('title'));
 
 		$binds = array(
-			'category_id' => $this->input->post('category_id'),
+			'category_id' => $params['category_id'],
 			'user_id' => $this->session->userdata('user_id'),
-			'title' => $this->db->escape($this->input->post('title')),
-			'slug' => $this->db->escape($slug),
-			'body' => $this->db->escape($this->input->post('body')),
+			'title' => $params['title'],
+			'slug' => $slug,
+			'body' => $params['body'],
 			'post_image' => $post_image
 		);
 
@@ -86,17 +86,17 @@ class Post_model extends CI_Model
 		return true;
 	}
 
-	public function update_post()
+	public function update_post($params)
 	{
 
-		$slug = url_title($this->input->post('title'));
+		$slug = url_title($params['title']);
 
 		$binds = array(
-			'title' => $this->input->post('title'),
+			'title' => $params['title'],
 			'slug' => $slug,
-			'body' => $this->input->post('body'),
-			'category_id' => $this->input->post('category_id'),
-			'id' => $this->input->post('id')
+			'body' => $params['body'],
+			'category_id' => $params['category_id'],
+			'id' => $params['id']
 		);
 
 		$sql = "

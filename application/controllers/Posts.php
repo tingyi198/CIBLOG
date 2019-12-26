@@ -34,7 +34,8 @@ class Posts extends CI_Controller
 		$post_id = $data['post']['id'];
 		$data['comments'] = $this->Comment_model->get_comments($post_id);
 
-		if (empty($data['post'])) {
+		if (empty($data['post']))
+		{
 			show_404();
 		}
 
@@ -48,7 +49,8 @@ class Posts extends CI_Controller
 	public function create()
 	{
 
-		if (!$this->session->userdata('logged_in')) {
+		if (!$this->session->userdata('logged_in'))
+		{
 			redirect('/users/login');
 		}
 
@@ -59,12 +61,18 @@ class Posts extends CI_Controller
 		$this->form_validation->set_rules('title', 'Title', 'required');
 		$this->form_validation->set_rules('body', 'Body', 'required');
 
+		$params = $this->security->xss_clean($this->input->post());
+
 		// 表單驗證失敗
-		if ($this->form_validation->run() === FALSE) {
+		if ($this->form_validation->run() === FALSE)
+		{
 			$this->load->view('templates/header');
 			$this->load->view('posts/create', $data);
 			$this->load->view('templates/footer');
-		} else { // 表單驗證通過
+		}
+		// 表單驗證通過
+		else
+		{
 
 			// upload image
 			$config['upload_path'] = './assets/images/posts/';
@@ -75,15 +83,19 @@ class Posts extends CI_Controller
 
 			$this->load->library('upload', $config);
 
-			if (!$this->upload->do_upload()) { // 上傳失敗
+			if (!$this->upload->do_upload())
+			{ // 上傳失敗
 				$errors = array('error' => $this->upload->display_errors());
 				$post_image = 'noImage.jpg';
-			} else { // 上傳成功
+			}
+			// 上傳成功
+			else
+			{
 				$data = array('upload_data' => $this->upload->data());
 				$post_image = $_FILES['userfile']['name'];
 			}
 
-			$this->Post_model->create_post($post_image);
+			$this->Post_model->create_post($params, $post_image);
 
 			// Set message
 			$this->session->set_flashdata('post_created', 'Your post has been created.');
@@ -95,7 +107,8 @@ class Posts extends CI_Controller
 	public function delete($id)
 	{
 
-		if (!$this->session->userdata('logged_in')) {
+		if (!$this->session->userdata('logged_in'))
+		{
 			redirect('/users/login');
 		}
 
@@ -123,9 +136,11 @@ class Posts extends CI_Controller
 
 		$data['categories'] = $this->Post_model->get_categories();
 
-		if (empty($data['post'])) {
+		if (empty($data['post']))
+		{
 			show_404();
 		}
+
 		$data['title'] = 'Edit Post';
 		$this->load->view('templates/header');
 		$this->load->view('posts/edit', $data);
@@ -135,11 +150,14 @@ class Posts extends CI_Controller
 	public function update()
 	{
 
-		if (!$this->session->userdata('logged_in')) {
+		if (!$this->session->userdata('logged_in'))
+		{
 			redirect('/users/login');
 		}
 
-		$this->Post_model->update_post();
+		$params = $this->security->xss_clean($this->input->post());
+
+		$this->Post_model->update_post($params);
 
 		// Set message
 		$this->session->set_flashdata('post_updated', 'Your post has been updated.');
