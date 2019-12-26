@@ -7,25 +7,46 @@ class Post_model extends CI_Model
 		$this->load->database();
 	}
 
-	public function get_posts($slug = FALSE, $limit = FALSE, $offset = FALSE)
+	public function get_posts($slug = FALSE, $limit = 1, $offset = 0)
 	{
-		if ($limit) {
-			$this->db->limit($limit, $offset);
+
+		$sql = "
+			SELECT posts.id,
+			category_id,
+			user_id,
+			title,
+			slug,
+			body,
+			post_image,
+			posts.created_at,
+			categories.id as cid,
+			categories.name,
+			categories.created_at
+			FROM `posts`
+			JOIN `categories`
+			ON categories.id = posts.category_id
+			WHERE posts.slug = ?
+			ORDER by posts.id DESC
+			limit ?
+			offset ?";
+
+		$binds = array($slug, $limit, $offset);
+
+		$query = $this->db->query($sql, $binds);
+
+		if ($query === FALSE)
+		{
+			return FALSE;
 		}
 
-		if ($slug === FALSE) {
-			$this->db->select('posts.id, category_id, user_id, title, slug, body, post_image, posts.created_at, categories.id as cid, categories.name, categories.created_at', FALSE);
-			$this->db->join('categories', 'categories.id = posts.category_id');
-			$this->db->order_by('posts.id', 'DESC');
-			$query = $this->db->get('posts');
+		if ($slug)
+		{  // show a specific post
+			return $query->row_array();
+		}
+		else
+		{ // show all posts
 			return $query->result_array();
 		}
-
-		$this->db->select('posts.id, category_id, user_id, title, slug, body, post_image, posts.created_at, categories.id as cid, categories.name, categories.created_at', FALSE);
-		$this->db->join('categories', 'categories.id = posts.category_id');
-		$this->db->order_by('posts.id', 'DESC');
-		$query = $this->db->get_where('posts', array('slug' => $slug));
-		return $query->row_array();
 	}
 
 	public function create_post($post_image)

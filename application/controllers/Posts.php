@@ -9,7 +9,7 @@ class Posts extends CI_Controller
 
 		$total_rows = $this->db->count_all('posts');
 		$limit = 1;
-		$offset = $this->input->get('offset');
+		$offset = (int) $this->input->get('offset') ?? 1;
 
 		// 分頁設定
 		$this->pagination->initialize(
