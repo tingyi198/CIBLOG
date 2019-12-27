@@ -52,6 +52,9 @@ class Post_model extends CI_Model
 
 	public function create_post($params, $post_image)
 	{
+
+		$this->db->trans_start();
+
 		$slug = url_title($this->input->post('title'));
 
 		$binds = array(
@@ -70,6 +73,8 @@ class Post_model extends CI_Model
 		";
 
 		$this->db->query($sql, $binds);
+
+		$this->db->trans_complete();
 	}
 
 	public function delete_post($id)
