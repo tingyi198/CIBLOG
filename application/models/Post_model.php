@@ -38,12 +38,14 @@ class Post_model extends CI_Model
 			return FALSE;
 		}
 
+		// show a specific post
 		if ($slug)
-		{  // show a specific post
+		{
 			return $query->row_array();
 		}
+		// show all posts
 		else
-		{ // show all posts
+		{
 			return $query->result_array();
 		}
 	}

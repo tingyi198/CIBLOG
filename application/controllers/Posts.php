@@ -73,7 +73,6 @@ class Posts extends CI_Controller
 		// 表單驗證通過
 		else
 		{
-
 			// upload image
 			$config['upload_path'] = './assets/images/posts/';
 			$config['allowed_types'] = 'gif|jpg|png';
